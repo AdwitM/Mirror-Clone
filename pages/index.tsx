@@ -1,7 +1,7 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import type {NextPage} from 'next';
+import Head from 'next/head';
+import Image from 'next/image';
+import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
   return (
@@ -50,6 +50,14 @@ const Home: NextPage = () => {
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
           </a>
+
+          <a href="https://hardhat.org/tutorial/" className={styles.card}>
+            <h2>Web3 &rarr;</h2>
+            <p>
+              Test, deploy smart contracts to EVM compatible networks using
+              Hardhat.
+            </p>
+          </a>
         </div>
       </main>
 
@@ -66,7 +74,7 @@ const Home: NextPage = () => {
         </a>
       </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
