@@ -6,7 +6,7 @@ import '@nomiclabs/hardhat-waffle';
 import '@typechain/hardhat';
 import 'hardhat-gas-reporter';
 import 'solidity-coverage';
-import path from "path";
+import path from 'path';
 
 dotenv.config({path: path.resolve(process.cwd(), '.env.local')});
 
