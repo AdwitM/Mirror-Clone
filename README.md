@@ -1,10 +1,17 @@
-# NextJS Web3 template
+# Figment mirror clone tutorial
 
-This template uses NextJS, Hardhat and Typescript.
+Build from scratch a [Mirror](https://mirror.xyz/dashboard) clone with [Figment lean](https://learn.figment.io/)
 
-The template comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts. It also comes with a variety of other tools, preconfigured to work with the project code.
+## Run the application locally in dev mode
 
-## Setup
+```text
+git clone git@github.com:figment-networks/mirror-tutorial.git
+cd mirror-tutorial
+yarn
+ARWEAVE_WALLET=$(cat arweave-wallet.json) yarn dev
+```
+
+## Deploy and verify the contract
 
 Copy `.env.local.example` to `.env.local`
 
@@ -17,6 +24,13 @@ Then set environmental variables:
 * **MAINNET_NODE_URL** - URL for mainnet node.
 * **TESTNET_NODE_URL** - URL for testnet node.
 * **PRIVATE_KEY** - Your private key exported from Metamask. Go to https://metamask.zendesk.com/hc/en-us/articles/360015289632-How-to-Export-an-Account-Private-Key to learn how to do it.
+* 
+Then run:
+
+```text
+yarn sc:deploy:testnet
+yarn sc:verify:testnet -- CONTRACT_ADDRESS 'Mirror clone' 'MRM'
+```
 
 ## Commands
 Try running some of the following tasks:

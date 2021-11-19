@@ -19,9 +19,13 @@
     "web3:verify:mainnet": "npx hardhat verify --network mainnet"
   },
   "dependencies": {
+    "ardb": "^1.1.8",
+    "arweave": "^1.10.18",
+    "axios": "^0.24.0",
     "next": "12.0.4",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "swr": "^1.0.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.16.4",

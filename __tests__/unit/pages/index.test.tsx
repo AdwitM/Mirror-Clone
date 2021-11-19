@@ -7,7 +7,7 @@ describe('Home', () => {
     render(<Home />);
 
     const heading = screen.getByRole('heading', {
-      name: /welcome to next\.js!/i,
+      name: /Mirror Clone Tutorial/i,
     });
 
     expect(heading).toBeInTheDocument();
