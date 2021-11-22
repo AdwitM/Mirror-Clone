@@ -1,6 +1,6 @@
-# Figment mirror clone tutorial
+# Mirror.xyz clone tutorial by Figment Learn
 
-Build from scratch a [Mirror](https://mirror.xyz/dashboard) clone with [Figment lean](https://learn.figment.io/)
+Build from scratch a [Mirror](https://mirror.xyz/dashboard) clone with [Figment Learn](https://learn.figment.io/)
 
 ## Run the application locally in dev mode
 
