@@ -2,14 +2,10 @@
 
 Build from scratch a [Mirror](https://mirror.xyz/dashboard) clone with [Figment Learn](https://learn.figment.io/)
 
-## Run the application locally in dev mode
+## Setup Arweave wallet
 
-```text
-git clone git@github.com:figment-networks/mirror-tutorial.git
-cd mirror-tutorial
-yarn
-ARWEAVE_WALLET=$(cat arweave-wallet.json) yarn dev
-```
+Go to [Arweave mainnet faucet](https://faucet.arweave.net/) and follow instructions to create a wallet.
+Save JSON file in the root of the project as `arweave-wallet.json`
 
 ## Deploy and verify the contract
 
@@ -55,7 +51,14 @@ yarn sc:verify:testnet -- <CONTRACT_ADDRESS>
 Set environmental variables in .env.development:
 * **NEXT_PUBLIC_NODE_URL** - URL of node
 * **NEXT_PUBLIC_CONTRACT_ADDRESS** - Smart contract address from previous step
+## Run the application locally in dev mode
 
+```text
+git clone git@github.com:figment-networks/mirror-tutorial.git
+cd mirror-tutorial
+yarn
+ARWEAVE_WALLET=$(cat arweave-wallet.json) yarn dev
+```
 ## Preview
 
 Preview the example live on [StackBlitz](http://stackblitz.com/):

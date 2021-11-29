@@ -24,7 +24,7 @@ type NFTContractProviderProps = {
 export const Web3Provider = (props: NFTContractProviderProps) => {
   const {children} = props;
   const provider =
-    typeof window == 'undefined'
+    typeof window == 'undefined' || !window.ethereum
       ? null
       : new ethers.providers.Web3Provider(window.ethereum);
   const contract = provider

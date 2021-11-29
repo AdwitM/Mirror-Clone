@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, {ReactElement, useState} from 'react';
+import React, {ReactElement} from 'react';
 import {Box, Button, IconUserSolid, Stack} from 'degen';
 
 import {useWeb3} from '@/hooks/useWeb3';
@@ -7,10 +7,8 @@ import {Logo} from '@/components';
 
 const Header = (): ReactElement => {
   const {address, connect, disconnect} = useWeb3();
-  const [fetching, setFetching] = useState(false);
 
   const connectToggle = async () => {
-    setFetching(true);
     try {
       if (address) {
         disconnect();
@@ -24,8 +22,6 @@ const Header = (): ReactElement => {
       const errorMessage =
         error instanceof Error ? error.message : 'Unknown Error';
       alert(`Connection attempt failed: ${errorMessage}`);
-    } finally {
-      setFetching(false);
     }
   };
 
@@ -50,7 +46,6 @@ const Header = (): ReactElement => {
           variant="highlight"
           width={{xs: 'full', md: 'max'}}
           onClick={connectToggle}
-          disabled={fetching}
         >
           {address ? 'Disconnect' : 'Connect Wallet'}
         </Button>
