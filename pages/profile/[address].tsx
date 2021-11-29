@@ -1,18 +1,28 @@
 import React from 'react';
 import {useRouter} from 'next/router';
+import {Field} from 'degen';
 
 import {withPublicLayout} from '@/layouts';
-import {PageContainer, PostsList} from '@/components';
+import {PageContent, PageHeading, PostsList} from '@/components';
+import {addEllipsis} from '@/utils/string';
 
-const Profile = () => {
+const Profile = (): JSX.Element | null => {
   const router = useRouter();
   const {address} = router.query;
 
+  if (!address) {
+    return null;
+  }
+
   return (
-    <PageContainer>
-      <h3>Profile {address}</h3>
-      {address && <PostsList address={address as string} />}
-    </PageContainer>
+    <>
+      <PageHeading title={`Profile of ${addEllipsis(address as string)}`} />
+      <PageContent background="backgroundTertiary">
+        <Field label="User's entries:">
+          <PostsList address={address as string} />
+        </Field>
+      </PageContent>
+    </>
   );
 };
 

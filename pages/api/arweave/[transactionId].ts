@@ -1,14 +1,11 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
-import Arweave from 'arweave';
 
 import {GetTransactionRespT, PostTagsT, TransactionStatusE} from '@/types';
 import {MIN_NUMBER_OF_CONFIRMATIONS} from '@/constants';
 
-const arweave = Arweave.init({
-  host: 'arweave.net',
-  port: 443,
-  protocol: 'https',
-});
+import {initialize} from 'lib/arweave';
+
+const arweave = initialize();
 
 export default async function (
   req: NextApiRequest,

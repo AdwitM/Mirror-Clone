@@ -1,15 +1,24 @@
 import React from 'react';
 
+import {ReactNodeNoStrings} from 'degen/dist/types/types';
+import {Stack} from 'degen';
+
 import Header from './Header';
 import Footer from './Footer';
 
-const PublicLayout = ({children}) => {
+type PublicLayoutProps = {
+  children: ReactNodeNoStrings;
+};
+
+const PublicLayout = (props: PublicLayoutProps): JSX.Element => {
+  const {children} = props;
+
   return (
-    <div>
+    <Stack>
       <Header />
-      <div>{children}</div>
+      <Stack>{children}</Stack>
       <Footer />
-    </div>
+    </Stack>
   );
 };
 

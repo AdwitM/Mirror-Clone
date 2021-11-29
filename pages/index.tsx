@@ -1,22 +1,33 @@
 import React from 'react';
 import Link from 'next/link';
+import {Button, Field, IconPlusSmall, Stack} from 'degen';
 
 import routes from '@/routes';
 import {withPublicLayout} from '@/layouts';
-import {PageContainer, PostsList} from '@/components';
+import {PageContent, PageHeading, PostsList} from '@/components';
 
 const Home = () => {
   return (
-    <PageContainer>
-      <h1 role="heading">Mirror Clone Tutorial</h1>
-      <div>
-        <Link href={routes.entries.create} passHref>
-          <button>Create New Post</button>
-        </Link>
-        <h3>Recent posts</h3>
-        <PostsList />
-      </div>
-    </PageContainer>
+    <>
+      <PageHeading title="Dashboard" />
+      <PageContent background="backgroundTertiary">
+        <Stack space="9">
+          <Link href={routes.entries.create} passHref>
+            <Button
+              center
+              variant="highlight"
+              width="full"
+              prefix={<IconPlusSmall />}
+            >
+              Create Entry
+            </Button>
+          </Link>
+          <Field label="Recent posts">
+            <PostsList />
+          </Field>
+        </Stack>
+      </PageContent>
+    </>
   );
 };
 

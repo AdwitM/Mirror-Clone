@@ -1,6 +1,7 @@
 import React, {ChangeEvent, useCallback, useState} from 'react';
 
 import {useWeb3} from '@/hooks/useWeb3';
+import {Button, Input, Stack} from 'degen';
 
 type TransferNFTFormProps = {
   tokenId: number;
@@ -62,15 +63,24 @@ const TransferNFTForm = (props: TransferNFTFormProps): JSX.Element | null => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={recipient}
-        onChange={handleRecipientChange}
-        placeholder="Recipient Address..."
-      />
-      <button type="submit" disabled={submitting}>
-        Transfer NFT
-      </button>
+      <Stack space="4">
+        <Input
+          label="Recipient Address"
+          value={recipient}
+          onChange={handleRecipientChange}
+          placeholder="Address..."
+          required
+        />
+        <Button
+          type="submit"
+          variant="highlight"
+          width={{xs: 'full', md: 'max'}}
+          disabled={submitting}
+          loading={submitting}
+        >
+          Transfer NFT
+        </Button>
+      </Stack>
     </form>
   );
 };

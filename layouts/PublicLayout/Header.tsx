@@ -1,10 +1,9 @@
 import Link from 'next/link';
-import routes from 'routes';
-import {ReactElement, useState} from 'react';
+import React, {ReactElement, useState} from 'react';
+import {Box, Button, IconUserSolid, Stack} from 'degen';
 
 import {useWeb3} from '@/hooks/useWeb3';
-
-import Navigation from './Navigation';
+import {Logo} from '@/components';
 
 const Header = (): ReactElement => {
   const {address, connect, disconnect} = useWeb3();
@@ -31,15 +30,32 @@ const Header = (): ReactElement => {
   };
 
   return (
-    <div>
-      <div>
-        <Navigation />
-        <button onClick={connectToggle} disabled={fetching}>
-          {address ? 'Disconnect' : 'Connect'}
-        </button>
-        {address && <Link href={`/profile/${address}`}>Profile</Link>}
-      </div>
-    </div>
+    <Box
+      display="flex"
+      justifyContent="space-between"
+      flexDirection="row"
+      borderBottomWidth="0.375"
+      padding="4"
+    >
+      <Logo />
+      <Stack direction="horizontal">
+        {address && (
+          <Link href={`/profile/${address}`} passHref>
+            <Button shape="circle" variant="secondary">
+              <IconUserSolid />
+            </Button>
+          </Link>
+        )}
+        <Button
+          variant="highlight"
+          width={{xs: 'full', md: 'max'}}
+          onClick={connectToggle}
+          disabled={fetching}
+        >
+          {address ? 'Disconnect' : 'Connect Wallet'}
+        </Button>
+      </Stack>
+    </Box>
   );
 };
 
