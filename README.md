@@ -19,7 +19,7 @@ Copy `.env.local.example` to `.env.local`
 cp .env.local.example .env.local
 ```
 
-Then set environmental variables:
+Set environmental variables in .env.local:
 * **ETHERSCAN_API_KEY** - Etherscan API Key. Go to https://info.etherscan.com/api-keys/ to learn how to create api key.
 * **MAINNET_NODE_URL** - URL for mainnet node.
 * **TESTNET_NODE_URL** - URL for testnet node.
@@ -32,44 +32,50 @@ yarn sc:deploy:testnet
 yarn sc:verify:testnet -- CONTRACT_ADDRESS 'Mirror clone' 'MRM'
 ```
 
-## Commands
-Try running some of the following tasks:
+### Compile smart contract
 
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-npx hardhat help
-REPORT_GAS=true npx hardhat test
-npx hardhat coverage
-npx hardhat run scripts/deploy.ts
-TS_NODE_FILES=true npx ts-node scripts/deploy.ts
-npx eslint '**/*.{js,ts}'
-npx eslint '**/*.{js,ts}' --fix
-npx prettier '**/*.{json,sol,md}' --check
-npx prettier '**/*.{json,sol,md}' --write
-npx solhint 'contracts/**/*.sol'
-npx solhint 'contracts/**/*.sol' --fix
+```bash
+yarn web3:compile
 ```
 
-## Etherscan verification
+This will create required Typechain binding to smart contract
 
-To try out Etherscan verification, you first need to deploy a contract to an Ethereum network that's supported by Etherscan, such as Ropsten.
-
-In this project, copy the .env.example file to a file named .env, and then edit it to fill in the details. Enter your Etherscan API key, your Ropsten node URL (eg from Alchemy), and the private key of the account which will send the deployment transaction. With a valid .env file in place, first deploy your contract:
-
-```shell
-hardhat run --network ropsten scripts/sample-script.ts
+### Deploy smart contract to testnet
+```text
+yarn sc:deploy:testnet
 ```
 
-Then, copy the deployment address and paste it in to replace `DEPLOYED_CONTRACT_ADDRESS` in this command:
+Running deploy command will return contract address which you will need in next steps.
 
-```shell
-npx hardhat verify --network ropsten DEPLOYED_CONTRACT_ADDRESS "Hello, Hardhat!"
+### Verify smart contract
+```bash
+yarn sc:verify:testnet -- <CONTRACT_ADDRESS>
 ```
 
-## Performance optimizations
+Set environmental variables in .env.development:
+* **NEXT_PUBLIC_NODE_URL** - URL of node
+* **NEXT_PUBLIC_CONTRACT_ADDRESS** - Smart contract address from previous step
 
-For faster runs of your tests and scripts, consider skipping ts-node's type checking by setting the environment variable `TS_NODE_TRANSPILE_ONLY` to `1` in hardhat's environment. For more details see [the documentation](https://hardhat.org/guides/typescript.html#performance-optimizations).
+## Preview
+
+Preview the example live on [StackBlitz](http://stackblitz.com/):
+
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-ethers-hardhat)
+
+## Deploy your own
+
+Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-ethers-hardhat&project-name=with-ethers-hardhat&repository-name=with-ethers-hardhat)
+
+## How to use
+
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+
+```bash
+npx create-next-app --example with-ethers-hardhat with-ethers-hardhat-app
+# or
+yarn create next-app --example with-ethers-hardhat with-ethers-hardhat-app
+```
+
+Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
