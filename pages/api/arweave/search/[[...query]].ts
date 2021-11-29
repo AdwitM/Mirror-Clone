@@ -1,13 +1,10 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
-import Arweave from 'arweave';
 import ArDB from 'ardb';
 import {DataT} from '@/types';
 
-const arweave = Arweave.init({
-  host: 'arweave.net',
-  port: 443,
-  protocol: 'https',
-});
+import {initialize} from 'lib/arweave';
+
+const arweave = initialize();
 
 const getData = async (txId: string) => {
   const buffer = (await arweave.transactions.getData(txId, {
@@ -29,7 +26,7 @@ export default async function (
     const searchAddress = query && query[0];
     const ardb = new ArDB(arweave);
 
-    const tags = [{name: 'App-Name', values: ['MirrorClone']}];
+    const tags = [{name: 'App-Name', values: [process.env.APP_NAME as string]}];
 
     if (searchAddress) {
       tags.push({name: 'Address', values: [searchAddress]});

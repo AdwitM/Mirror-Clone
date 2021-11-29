@@ -1,11 +1,8 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
-import Arweave from 'arweave';
 
-const arweave = Arweave.init({
-  host: 'arweave.net',
-  port: 443,
-  protocol: 'https',
-});
+import {initialize} from 'lib/arweave';
+
+const arweave = initialize();
 
 export default async function (
   req: NextApiRequest,
@@ -17,7 +14,7 @@ export default async function (
 
     const transaction = await arweave.createTransaction({data: data}, wallet);
 
-    transaction.addTag('App-Name', 'MirrorClone');
+    transaction.addTag('App-Name', process.env.APP_NAME as string);
     transaction.addTag('Content-Type', 'application/json');
     transaction.addTag('Address', address);
 
@@ -26,6 +23,7 @@ export default async function (
 
     res.status(200).json(transaction.id);
   } catch (error) {
+    console.log('ERROR', error);
     const errorMessage =
       error instanceof Error ? error.message : 'Unknown Error';
     res.status(500).json(errorMessage);

@@ -12,6 +12,29 @@ const defaultSwrOptions = {
   revalidateOnReconnect: false,
 } as PublicConfiguration;
 
+export const useGetTransactionIndex = (
+  address = '',
+  swrOptions = defaultSwrOptions,
+): {
+  data: any | undefined;
+  loading: boolean;
+  error: AxiosError | undefined;
+  refetch: () => void;
+} => {
+  const {data, error, mutate, isValidating} = useSWR<any, AxiosError>(
+    routes.api.arweave.search(address),
+    basicFetcher,
+    swrOptions,
+  );
+
+  return {
+    data,
+    loading: (!error && !data) || isValidating,
+    error: error,
+    refetch: mutate,
+  };
+};
+
 export const useGetTransaction = (
   transactionId: string,
   swrOptions = defaultSwrOptions,

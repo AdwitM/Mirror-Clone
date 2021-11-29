@@ -1,24 +1,21 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
-import Arweave from 'arweave';
 
 import {GetTransactionRespT, PostTagsT, TransactionStatusE} from '@/types';
 import {MIN_NUMBER_OF_CONFIRMATIONS} from '@/constants';
 
-const arweave = Arweave.init({
-  host: 'arweave.net',
-  port: 443,
-  protocol: 'https',
-});
+import {initialize} from 'lib/arweave';
+
+const arweave = initialize();
 
 export default async function (
   req: NextApiRequest,
   res: NextApiResponse<GetTransactionRespT | string>,
 ): Promise<any> {
   try {
-    const {transactionId} = req.query;
+    const {transactionHash} = req.query;
 
     const txDataResp = (await arweave.transactions.getData(
-      transactionId as string,
+      transactionHash as string,
       {
         decode: true,
         string: true,
@@ -27,7 +24,7 @@ export default async function (
     const txData = JSON.parse(txDataResp);
 
     const txStatusResp = await arweave.transactions.getStatus(
-      transactionId as string,
+      transactionHash as string,
     );
 
     const txStatus =
@@ -44,7 +41,7 @@ export default async function (
         ? await arweave.blocks.get(txStatusResp.confirmed.block_indep_hash)
         : null;
 
-      const tx = await arweave.transactions.get(transactionId as string);
+      const tx = await arweave.transactions.get(transactionHash as string);
 
       const tags = {} as PostTagsT;
       (tx.get('tags') as any).forEach((tag) => {
@@ -53,7 +50,7 @@ export default async function (
       });
 
       res.status(200).json({
-        id: transactionId as string,
+        id: transactionHash as string,
         data: txData,
         status: txStatus,
         timestamp: block?.timestamp,

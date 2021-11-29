@@ -1,12 +1,13 @@
 import {ReactElement} from 'react';
+import {Text} from 'degen';
 
 const MyError = ({statusCode}: {statusCode: string}): ReactElement => {
   return (
-    <p>
+    <Text>
       {statusCode
         ? `An error ${statusCode} occurred on server`
         : 'An error occurred on client'}
-    </p>
+    </Text>
   );
 };
 

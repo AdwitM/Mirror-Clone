@@ -3,6 +3,8 @@ import React, {useEffect, useMemo, useState} from 'react';
 import {GetTransactionRespT, TransactionStatusE} from '@/types';
 import {useWeb3} from '@/hooks/useWeb3';
 import TransferNFTForm from '@/components/TransferNFTForm/TransferNFTForm';
+import {Card, Text} from 'degen';
+import {ErrorBlock, Loader} from '..';
 
 type NFTDetailsProps = {
   transaction: GetTransactionRespT;
@@ -44,21 +46,16 @@ const NFTDetails = (props: NFTDetailsProps): JSX.Element | null => {
   const isOwner = useMemo(() => address === nftOwner, [address, nftOwner]);
 
   if (error) {
-    return (
-      <div>
-        <h3>Fetching failed</h3>
-        <p>{error}</p>
-      </div>
-    );
+    return <ErrorBlock title="Fetching failed" message={error} />;
   }
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   if (transaction.status === TransactionStatusE.CONFIRMED) {
     return (
-      <div>
+      <Card>
         <h4>NFT</h4>
         {tokenId ? (
           <div>
@@ -67,9 +64,9 @@ const NFTDetails = (props: NFTDetailsProps): JSX.Element | null => {
             {isOwner && <TransferNFTForm tokenId={tokenId} />}
           </div>
         ) : (
-          <div>{"Token hasn't been minted yet."}</div>
+          <Text>{"Token hasn't been minted yet."}</Text>
         )}
-      </div>
+      </Card>
     );
   }
 

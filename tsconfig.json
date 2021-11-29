@@ -17,7 +17,7 @@
       "@/components/*": ["components/*"],
       "@/utils/*": ["utils/*"],
       "@/hooks/*": ["hooks/*"],
-      "@/theme": ["theme"],
+      "@/lib/*": ["lib/*"],
       "@/fetchers": ["fetchers"],
       "@/typechain": ["typechain"],
       "@/routes": ["routes.ts"],

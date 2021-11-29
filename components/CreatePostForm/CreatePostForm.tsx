@@ -1,9 +1,10 @@
-import {ReactElement, useCallback, useState} from 'react';
+import React, {ReactElement, useCallback, useState} from 'react';
 import axios from 'axios';
 import {useRouter} from 'next/router';
 
 import {useWeb3} from '@/hooks/useWeb3';
 import routes from '@/routes';
+import {Button, Input, Stack, Textarea} from 'degen';
 
 const createJsonMetaData = (data: any) => {
   return JSON.stringify(data);
@@ -27,7 +28,7 @@ const CreatePostForm = (): ReactElement => {
     setValues((prevState) => {
       return {
         ...prevState,
-        title: event.currentTarget.value,
+        title: event.target.value,
       };
     });
   };
@@ -36,7 +37,7 @@ const CreatePostForm = (): ReactElement => {
     setValues((prevState) => {
       return {
         ...prevState,
-        body: event.currentTarget.value,
+        body: event.target.value,
       };
     });
   };
@@ -71,6 +72,8 @@ const CreatePostForm = (): ReactElement => {
           const rec = await resp.wait();
 
           console.log(rec);
+
+          alert('Entry created successfully');
         }
 
         router.push({
@@ -89,30 +92,41 @@ const CreatePostForm = (): ReactElement => {
   );
 
   return (
-    <div>
+    <Stack>
       <form onSubmit={handleSubmit}>
-        <div>
-          <input
-            type="text"
-            placeholder="Title..."
+        <Stack space="4">
+          <Input
+            label="Title"
+            hideLabel={true}
+            placeholder="Give it a title..."
             value={values.title}
             onChange={handleTitleChange}
+            autoFocus
+            required
           />
-        </div>
 
-        <div>
-          <textarea
-            placeholder="Body..."
+          <Textarea
+            label="Body"
+            hideLabel={true}
+            placeholder="What's on your mind..."
             value={values.body}
             onChange={handleBodyChange}
+            required
           />
-        </div>
 
-        <button type="submit" data-testid="submit-btn" disabled={submitting}>
-          Submit
-        </button>
+          <Button
+            variant="highlight"
+            width={{xs: 'full', md: 'max'}}
+            type="submit"
+            data-testid="submit-btn"
+            loading={submitting}
+            disabled={submitting}
+          >
+            Publish
+          </Button>
+        </Stack>
       </form>
-    </div>
+    </Stack>
   );
 };
 

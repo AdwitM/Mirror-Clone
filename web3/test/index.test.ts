@@ -2,17 +2,16 @@ import {expect} from 'chai';
 import {ethers} from 'hardhat';
 
 describe('MirrorClone', function () {
-  let contract, ownerAccount, user1Account;
+  let contract, user1Account;
 
   beforeEach(async () => {
     const MirrorClone = await ethers.getContractFactory('MirrorClone');
     contract = await MirrorClone.deploy('MIRROR', 'MRM');
     await contract.deployed();
 
-    const [acc1, acc2] = await ethers.getSigners();
+    const accounts = await ethers.getSigners();
 
-    ownerAccount = acc1;
-    user1Account = acc2;
+    user1Account = accounts[1]; // index 0 is reserved for owner
   });
 
   describe('methods', function () {
