@@ -6,12 +6,12 @@ import {PageContainer, PostDetails} from '@/components';
 
 const ShowEntry = (): JSX.Element | null => {
   const router = useRouter();
-  const {transactionId} = router.query;
+  const {transactionHash} = router.query;
 
-  if (transactionId) {
+  if (transactionHash) {
     return (
       <PageContainer>
-        <PostDetails transactionId={transactionId as string} />
+        <PostDetails transactionHash={transactionHash as string} />
       </PageContainer>
     );
   }

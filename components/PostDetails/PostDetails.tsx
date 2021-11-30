@@ -15,14 +15,14 @@ import routes from '@/routes';
 import {addEllipsis} from '@/utils/string';
 
 type ViewPostProps = {
-  transactionId: string;
+  transactionHash: string;
 };
 
 const PostDetails = (props: ViewPostProps): JSX.Element | null => {
-  const {transactionId} = props;
+  const {transactionHash} = props;
 
   const {transaction, loading, error, refetch} =
-    useGetTransaction(transactionId);
+    useGetTransaction(transactionHash);
 
   if (error) {
     return (
