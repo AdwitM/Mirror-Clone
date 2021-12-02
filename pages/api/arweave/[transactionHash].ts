@@ -20,11 +20,11 @@ export default async function (
     const txStatus = undefined;
 
     if (txStatus === TransactionStatusE.CONFIRMED) {
-      // Get Arweave transaction block in order to retrieve timestamp. Documentation can be found here: https://github.com/ArweaveTeam/arweave-js
-
       // Get Arweave transaction. Documentation can be found here: https://github.com/ArweaveTeam/arweave-js
 
       // Get Arweave transaction tags. Documentation can be found here: https://github.com/ArweaveTeam/arweave-js
+
+      // Get Arweave transaction block in order to retrieve timestamp. Documentation can be found here: https://github.com/ArweaveTeam/arweave-js
 
       // Return JSON response in form:
       // res.status(200).json({

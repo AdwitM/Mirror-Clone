@@ -24,11 +24,11 @@ export default async function (
   try {
     const {query} = _req.query;
 
-    // Retrieve searchAddress
-
     // Initialize ArDB
     // More information about ArDB can be found here: https://www.npmjs.com/package/ardb
 
+    // Retrieve searchAddress
+    
     // Build tags
 
     // Search for transaction withs App-Name and Address (optional) tags
