@@ -29,7 +29,7 @@ const TransferNFTForm = (props: TransferNFTFormProps): JSX.Element | null => {
           // Call `transferFrom` method of smart contract
           const resp = undefined;
 
-          // Wait for receipt
+          // Wait for confirmation
           const rec = undefined;
 
           if (rec) {
