@@ -74,11 +74,13 @@ const CreatePostForm = (): ReactElement => {
 
           // Call `createToken` method passing in transactionId
           const resp = await contractWithSigner.createToken(transactionId);
+
+          // Wait for confirmation
           const rec = await resp.wait();
 
-          console.log(rec);
-
-          alert('Entry created successfully');
+          if (rec) {
+            alert('Entry created successfully');
+          }
         }
 
         router.push({
