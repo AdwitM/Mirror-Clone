@@ -36,7 +36,7 @@ export const useGetTransactionIndex = (
 };
 
 export const useGetTransaction = (
-  transactionId: string,
+  transactionHash: string,
   swrOptions = defaultSwrOptions,
 ): {
   transaction: GetTransactionRespT | undefined;
@@ -47,7 +47,7 @@ export const useGetTransaction = (
   const {data, error, mutate, isValidating} = useSWR<
     GetTransactionRespT,
     AxiosError
-  >(routes.api.arweave.get(transactionId), basicFetcher, swrOptions);
+  >(routes.api.arweave.get(transactionHash), basicFetcher, swrOptions);
 
   return {
     transaction: data,

@@ -25,18 +25,12 @@ const TransferNFTForm = (props: TransferNFTFormProps): JSX.Element | null => {
           setSubmitting(true);
 
           // Connect smart contract to signer
-          const signer = provider.getSigner();
-          const contractWithSigner = contract.connect(signer);
 
           // Call `transferFrom` method of smart contract
-          const resp = await contractWithSigner.transferFrom(
-            address,
-            recipient,
-            tokenId,
-          );
+          const resp = undefined;
 
           // Wait for confirmation
-          const rec = await resp.wait();
+          const rec = undefined;
 
           if (rec) {
             if (onSubmitted) {
