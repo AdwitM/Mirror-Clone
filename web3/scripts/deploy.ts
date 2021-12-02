@@ -6,14 +6,8 @@
 import {ethers} from 'hardhat';
 
 async function main() {
-  // Hardhat always runs the compile task when running scripts with its command
-  // line interface.
-  //
-  // If this script is run directly using `node` you may want to call compile
-  // manually to make sure everything is compiled
-  // await hre.run('compile');
-
-  // We get the contract to deploy
+  // Deploy MirrorClone smart contract
+  // More information can be found here: https://hardhat.org/guides/deploying.html
   const MirrorClone = await ethers.getContractFactory('MirrorClone');
   const mirrorClone = await MirrorClone.deploy('Mirror clone', 'MRM');
 
