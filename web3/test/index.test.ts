@@ -37,13 +37,5 @@ describe('MirrorClone', function () {
         ).to.emit(contract, 'TokenMinted');
       });
     });
-
-    describe('tokenURIToTokenId', () => {
-      it('returns 0 if tokenURI does not exists', async () => {
-        expect(await contract.tokenURIToTokenId('ar://does-not-exists')).to.eq(
-          0,
-        );
-      });
-    });
   });
 });
