@@ -38,6 +38,8 @@ export const Web3Provider = (props: NFTContractProviderProps) => {
 
   const connect = useCallback(async () => {
     if (provider) {
+      // Request accounts, get signer and get signer's address
+      // More information can be found: https://docs.ethers.io/v5/getting-started/#getting-started--connecting
       await provider.send('eth_requestAccounts', []);
 
       const signer = provider.getSigner();
