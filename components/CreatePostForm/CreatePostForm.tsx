@@ -67,8 +67,14 @@ const CreatePostForm = (): ReactElement => {
           // More information can be found here: https://docs.ethers.io/v5/getting-started/#getting-started--writing
 
           // Call `createToken` method passing in transactionId
+          const resp = undefined;
 
-          alert('Entry created successfully');
+          // Wait for confirmation
+          const rec = undefined;
+
+          if (rec) {
+            alert('Entry created successfully');
+          }
         }
 
         router.push({
