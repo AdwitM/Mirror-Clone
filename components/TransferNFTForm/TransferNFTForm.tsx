@@ -36,13 +36,13 @@ const TransferNFTForm = (props: TransferNFTFormProps): JSX.Element | null => {
           );
           const rec = await resp.wait();
 
-          console.log(rec);
+          if (rec) {
+            if (onSubmitted) {
+              onSubmitted();
+            }
 
-          if (onSubmitted) {
-            onSubmitted();
+            alert('NFT transferred successfully');
           }
-
-          alert('NFT transferred successfully');
         }
       } catch (err) {
         if (err instanceof Error) {
@@ -70,8 +70,9 @@ const TransferNFTForm = (props: TransferNFTFormProps): JSX.Element | null => {
           label="Recipient Address"
           value={recipient}
           onChange={handleRecipientChange}
-          placeholder="Address..."
+          placeholder="Recipient Address..."
           required
+          hideLabel
         />
         <Button
           type="submit"

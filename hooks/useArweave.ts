@@ -7,9 +7,9 @@ import {basicFetcher} from '@/fetchers';
 import {GetTransactionRespT} from '@/types';
 
 const defaultSwrOptions = {
-  revalidateIfStale: false,
+  revalidateIfStale: true,
   revalidateOnFocus: false,
-  revalidateOnReconnect: false,
+  revalidateOnReconnect: true,
 } as PublicConfiguration;
 
 export const useGetTransactionIndex = (

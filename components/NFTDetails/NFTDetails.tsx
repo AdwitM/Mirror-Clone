@@ -3,7 +3,7 @@ import React, {useEffect, useMemo, useState} from 'react';
 import {GetTransactionRespT, TransactionStatusE} from '@/types';
 import {useWeb3} from '@/hooks/useWeb3';
 import TransferNFTForm from '@/components/TransferNFTForm/TransferNFTForm';
-import {Card, Text} from 'degen';
+import {Box, Card, Field, Heading, IconNFT, Text} from 'degen';
 import {ErrorBlock, Loader} from '..';
 
 type NFTDetailsProps = {
@@ -18,28 +18,28 @@ const NFTDetails = (props: NFTDetailsProps): JSX.Element | null => {
   const [tokenId, setTokenId] = useState<number>();
   const [nftOwner, setNftOwner] = useState<string | null>(null);
 
-  useEffect(() => {
-    const getInitialData = async () => {
-      try {
-        if (contract) {
-          setError(null);
-          setLoading(true);
+  const getInitialData = async () => {
+    try {
+      if (contract) {
+        setError(null);
+        setLoading(true);
 
-          const tokenId = await contract.tokenURIToTokenId(transaction.id);
-          const owner = await contract.ownerOf(tokenId);
+        const tokenId = await contract.tokenURIToTokenId(transaction.id);
+        const owner = await contract.ownerOf(tokenId);
 
-          setTokenId(tokenId.toNumber());
-          setNftOwner(owner);
-        }
-      } catch (err) {
-        if (err instanceof Error) {
-          setError(err.message);
-        }
-      } finally {
-        setLoading(false);
+        setTokenId(tokenId.toNumber());
+        setNftOwner(owner);
       }
-    };
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     getInitialData();
   }, []);
 
@@ -55,18 +55,41 @@ const NFTDetails = (props: NFTDetailsProps): JSX.Element | null => {
 
   if (transaction.status === TransactionStatusE.CONFIRMED) {
     return (
-      <Card>
-        <h4>NFT</h4>
+      <>
         {tokenId ? (
-          <div>
-            <p>Token Id: {tokenId}</p>
-            <p>Owner: {nftOwner}</p>
-            {isOwner && <TransferNFTForm tokenId={tokenId} />}
-          </div>
+          <Card>
+            <Box paddingTop="4" paddingX="4">
+              <Field label={<IconNFT />}>
+                <Box padding="4">
+                  <Text>Token Id: {tokenId}</Text>
+                  <Text>Owner: {nftOwner}</Text>
+                  {isOwner && (
+                    <Box
+                      marginTop="5"
+                      padding="5"
+                      backgroundColor="backgroundTertiary"
+                      borderRadius="extraLarge"
+                    >
+                      <Field label="Transfer NFT">
+                        <TransferNFTForm
+                          tokenId={tokenId}
+                          onSubmitted={getInitialData}
+                        />
+                      </Field>
+                    </Box>
+                  )}
+                </Box>
+              </Field>
+            </Box>
+          </Card>
         ) : (
-          <Text>{"Token hasn't been minted yet."}</Text>
+          <ErrorBlock
+            icon={<IconNFT color="red" />}
+            title="Not found"
+            message="Token hasn't been minted yet"
+          />
         )}
-      </Card>
+      </>
     );
   }
 

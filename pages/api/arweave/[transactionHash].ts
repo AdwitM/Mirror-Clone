@@ -70,7 +70,11 @@ export default async function (
         tags,
       });
     } else {
-      throw new Error('Transaction not confirmed');
+      res.status(200).json({
+        id: transactionHash as string,
+        data: txData,
+        status: txStatus,
+      });
     }
   } catch (error) {
     const errorMessage =
