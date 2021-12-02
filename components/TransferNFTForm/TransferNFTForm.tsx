@@ -34,6 +34,8 @@ const TransferNFTForm = (props: TransferNFTFormProps): JSX.Element | null => {
             recipient,
             tokenId,
           );
+
+          // Wait for confirmation
           const rec = await resp.wait();
 
           if (rec) {
