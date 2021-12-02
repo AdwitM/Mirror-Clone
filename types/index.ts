@@ -13,7 +13,7 @@ export type GetTransactionRespT = {
   data: PostT;
   status: TransactionStatusE;
   timestamp?: number;
-  tags: PostTagsT;
+  tags?: PostTagsT;
 };
 
 export enum TransactionStatusE {

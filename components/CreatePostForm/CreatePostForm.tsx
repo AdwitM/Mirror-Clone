@@ -1,6 +1,7 @@
 import React, {ReactElement, useCallback, useState} from 'react';
 import axios from 'axios';
 import {useRouter} from 'next/router';
+import {useSWRConfig} from 'swr';
 
 import {useWeb3} from '@/hooks/useWeb3';
 import routes from '@/routes';
@@ -17,6 +18,7 @@ export type CreatePostFormValues = {
 
 const CreatePostForm = (): ReactElement => {
   const router = useRouter();
+  const {mutate} = useSWRConfig();
   const {address, contract, provider} = useWeb3();
   const [values, setValues] = useState<CreatePostFormValues>({
     title: '',
@@ -73,13 +75,12 @@ const CreatePostForm = (): ReactElement => {
           const rec = undefined;
 
           if (rec) {
+            mutate(routes.api.arweave.search());
             alert('Entry created successfully');
           }
         }
 
-        router.push({
-          pathname: routes.home,
-        });
+        router.push(routes.home);
       } catch (error) {
         console.log('Error: ', error);
         const errorMessage =

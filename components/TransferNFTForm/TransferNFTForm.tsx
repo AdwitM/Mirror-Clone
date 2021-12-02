@@ -27,12 +27,18 @@ const TransferNFTForm = (props: TransferNFTFormProps): JSX.Element | null => {
           // Connect smart contract to signer
 
           // Call `transferFrom` method of smart contract
+          const resp = undefined;
 
-          if (onSubmitted) {
-            onSubmitted();
+          // Wait for receipt
+          const rec = undefined;
+
+          if (rec) {
+            if (onSubmitted) {
+              onSubmitted();
+            }
+
+            alert('NFT transferred successfully');
           }
-
-          alert('NFT transferred successfully');
         }
       } catch (err) {
         if (err instanceof Error) {
@@ -60,8 +66,9 @@ const TransferNFTForm = (props: TransferNFTFormProps): JSX.Element | null => {
           label="Recipient Address"
           value={recipient}
           onChange={handleRecipientChange}
-          placeholder="Address..."
+          placeholder="Recipient Address..."
           required
+          hideLabel
         />
         <Button
           type="submit"
