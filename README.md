@@ -1,84 +1,39 @@
-# Mirror.xyz clone tutorial by Figment Learn
+# Blog Publishing Tutorial
 
-Build from scratch a [Mirror](https://mirror.xyz/dashboard) clone with [Figment Learn](https://learn.figment.io/)
+In this tutorial, you'll learn to develop a full stack application using [Arweave](https://www.arweave.org/) as the storage layer and [Polygon](https://polygon.technology/) as the smart contract protocol. We will provide a [Next.js](https://nextjs.org/) application that you will complete by leveraging [ether.js](https://docs.ethers.io/) and [hardhat](https://hardhat.org/). In the process, you'll dive into key concepts relevant to Web 3 and expand your understanding for what it takes to build decentralized applications (dApps).
 
-## Setup Arweave wallet
+## 🤔 What is Mirror?
 
-Go to [Arweave mainnet faucet](https://faucet.arweave.net/) and follow instructions to create a wallet.
-Save JSON file in the root of the project as `arweave-wallet.json`
+[Mirror](mirror.xyz) is a powerful blog publishing platform native to Web 3. It allows authors to own their posts and leverage the economic rails of crypto to earn value from readers. It also continues to grow as a ecosystem for creators that is more powerful than any publishing platform before it. In a way, Mirror is the first killer dApp of Web 3.
 
-## Deploy and verify the contract
+## 🧑‍💻 Getting started
+If you know how to program and have [JavaScript](https://www.javascript.com/) experience, you'll be able to complete the tutorial. Having said that, you'll be more comfortable if you have some experience with [TypeScript](https://www.typescriptlang.org/), [React](https://reactjs.org/), and [Next.js](https://nextjs.org/). Moreover, while you may not have built full stack Web 3 applications before, hopefully you have used a crypto wallet like [MetaMask](https://metamask.io/) and you're familiar with basic blockchain concepts like public address, private keys, and signing transactions.
 
-Copy `.env.local.example` to `.env.local`
+If any of that sounds unfamiliar, or the idea of engaging with those concepts sounds daunting at this point in your learning, we recommend starting with the [Solana Wallet](https://learn.figment.io/tutorials/solana-wallet-intro) tutorial before completing this one.
+
+Make sure you have [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git), [Node](https://nodejs.org/en/) and [yarn](https://yarnpkg.com/getting-started/install) installed. Make sure you've setup [SSH or token-based authentication](https://github.blog/2020-12-15-token-authentication-requirements-for-git-operations/) for Github. Then clone the repo and run the yarn command to install the app dependencies:
+
+```
+$ git clone git@github.com:figment-networks/web3-evm-template.git
+$ cd web3-evm-template
+$ yarn
+```
+
+If you into any Node issues, make sure you're running version 14.17.0 or greater. You can use the [Node Version Manager](https://github.com/nvm-sh/nvm) if you need to manage multiple Node versions locally.
+
+Now that you have the template, you need to navigate to this tutorial's branch:
 
 ```bash
-cp .env.local.example .env.local
+$ git checkout mirror-clone
 ```
 
-Set environmental variables in .env.local:
-* **ETHERSCAN_API_KEY** - Etherscan API Key. Go to https://info.etherscan.com/api-keys/ to learn how to create api key.
-* **MAINNET_NODE_URL** - URL for mainnet node.
-* **TESTNET_NODE_URL** - URL for testnet node.
-* **PRIVATE_KEY** - Your private key exported from Metamask. Go to https://metamask.zendesk.com/hc/en-us/articles/360015289632-How-to-Export-an-Account-Private-Key to learn how to do it.
-* 
-Then run:
+If you encounter any errors during this process, please join our [Discord](https://discord.gg/fszyM7K) for help.
 
-```text
-yarn sc:deploy:testnet
-yarn sc:verify:testnet -- CONTRACT_ADDRESS 'Mirror clone' 'MRM'
-```
+## 🔩 Designed by Figment Learn
+Our goal at [Figment Learn](https://learn.figment.io/) is to build the best resources for developers learning about and building in Web 3. We really hope you enjoy the tutorial and thanks for checking it out. **WAGMI!**
 
-### Compile smart contract
+Learn more about [Figment](https://figment.io/) and [Figment Learn](https://learn.figment.io/).
 
-```bash
-yarn web3:compile
-```
+[Join us on Discord](https://discord.com/invite/fszyM7K) if you have any feedback or questions!
 
-This will create required Typechain binding to smart contract
-
-### Deploy smart contract to testnet
-```text
-yarn sc:deploy:testnet
-```
-
-Running deploy command will return contract address which you will need in next steps.
-
-### Verify smart contract
-```bash
-yarn sc:verify:testnet -- <CONTRACT_ADDRESS>
-```
-
-Set environmental variables in .env.development:
-* **NEXT_PUBLIC_NODE_URL** - URL of node
-* **NEXT_PUBLIC_CONTRACT_ADDRESS** - Smart contract address from previous step
-## Run the application locally in dev mode
-
-```text
-git clone git@github.com:figment-networks/mirror-tutorial.git
-cd mirror-tutorial
-yarn
-ARWEAVE_WALLET=$(cat arweave-wallet.json) yarn dev
-```
-## Preview
-
-Preview the example live on [StackBlitz](http://stackblitz.com/):
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-ethers-hardhat)
-
-## Deploy your own
-
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-ethers-hardhat&project-name=with-ethers-hardhat&repository-name=with-ethers-hardhat)
-
-## How to use
-
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
-
-```bash
-npx create-next-app --example with-ethers-hardhat with-ethers-hardhat-app
-# or
-yarn create next-app --example with-ethers-hardhat with-ethers-hardhat-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+-- The Figment Learn Team
