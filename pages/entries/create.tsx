@@ -4,7 +4,7 @@ import {Avatar, Box, Text} from 'degen';
 
 import routes from '@/routes';
 import {withPublicLayout} from '@/layouts';
-import {CreatePostForm, PageContent, PageHeading} from '@/components';
+import {CreateEntryForm, PageContent, PageHeading} from '@/components';
 import {useWeb3} from '@/hooks/useWeb3';
 import {addEllipsis} from '@/utils/string';
 
@@ -37,7 +37,7 @@ const CreateEntry = (): JSX.Element | null => {
           <Avatar placeholder label={address} size="10" />
           <Text>{addEllipsis(address)}</Text>
         </Box>
-        <CreatePostForm />
+        <CreateEntryForm />
       </PageContent>
     </>
   );

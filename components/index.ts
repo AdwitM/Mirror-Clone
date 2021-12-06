@@ -5,7 +5,7 @@ import ErrorBlock from './ErrorBlock/ErrorBlock';
 import EmptyBlock from './EmptyBlock/EmptyBlock';
 import Timestamp from './Timestamp/Timestamp';
 import Loader from './Loader/Loader';
-import CreatePostForm from './CreatePostForm/CreatePostForm';
+import CreateEntryForm from './CreateEntryForm/CreateEntryForm';
 import PostsList from './PostsList/PostsList';
 import PostDetails from './PostDetails/PostDetails';
 import NFTDetails from './NFTDetails/NFTDetails';
@@ -20,7 +20,7 @@ export {
   Timestamp,
   Loader,
   Logo,
-  CreatePostForm,
+  CreateEntryForm,
   PostsList,
   PostDetails,
   NFTDetails,

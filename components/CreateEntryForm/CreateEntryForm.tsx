@@ -11,16 +11,16 @@ const createJsonMetaData = (data: any) => {
   return JSON.stringify(data);
 };
 
-export type CreatePostFormValues = {
+export type CreateEntryFormValues = {
   title: string;
   body: string;
 };
 
-const CreatePostForm = (): ReactElement => {
+const CreateEntryForm = (): ReactElement => {
   const router = useRouter();
   const {mutate} = useSWRConfig();
   const {address, contract, provider} = useWeb3();
-  const [values, setValues] = useState<CreatePostFormValues>({
+  const [values, setValues] = useState<CreateEntryFormValues>({
     title: '',
     body: '',
   });
@@ -142,4 +142,4 @@ const CreatePostForm = (): ReactElement => {
   );
 };
 
-export default CreatePostForm;
+export default CreateEntryForm;
