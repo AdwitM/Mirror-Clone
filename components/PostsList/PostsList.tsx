@@ -51,7 +51,7 @@ const PostsList = (props: PostListProps): ReactElement => {
     return (
       <EmptyBlock
         title="Nothing here"
-        message="Not entries found at the moment..."
+        message="No entries found at the moment..."
       />
     );
   }
