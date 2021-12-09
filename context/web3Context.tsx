@@ -38,12 +38,19 @@ export const Web3Provider = (props: NFTContractProviderProps) => {
 
   const connect = useCallback(async () => {
     if (provider) {
-      // Request accounts, get signer and get signer's address
+      // Request accounts, get signer, signers address & chainId
       // More information can be found: https://docs.ethers.io/v5/getting-started/#getting-started--connecting
 
-      const address = '';
+      const currentAddress = '';
+      const chainId = '';
 
-      setAddress(address);
+      if (chainId != 80001) {
+        alert('Please connect to the Polygon Mumbai testnet in MetaMask!')
+      }
+
+      // Read more about React hooks: https://reactjs.org/docs/hooks-intro.html
+      // The setAddress React hook sets the value of address in the app state
+      setAddress(currentAddress);
     } else {
       alert('Please install MetaMask at https://metamask.io');
     }

@@ -19,7 +19,7 @@ export default async function (
     // - App-Name - APP_NAME environmental variable
     // - Content-Type - Should be application/json
     // - Address - Address of a user
-    //Documentation can be found here: https://github.com/ArweaveTeam/arweave-js
+    // Documentation can be found here: https://github.com/ArweaveTeam/arweave-js
 
     // Sign Arweave transaction with your wallet. Documentation can be found here: https://github.com/ArweaveTeam/arweave-js
 
