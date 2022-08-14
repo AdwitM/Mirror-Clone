@@ -20,19 +20,14 @@ contract MirrorClone is ERC721, ERC721Enumerable, ERC721URIStorage {
     constructor(string memory _name, string memory _symbol) ERC721(_name, _symbol) {}
 
     function createToken(string memory _tokenURI) public returns (uint) {
-        // require statement to check if _tokenURI is not empty
-
-        // Increment counter so it starts with 0
-        
-        // Mint token
-
-        // Set token URI
-
-        // Set tokenURIToTokenId
-
-        // Emit TokemMinted event
-
-        // Return new tokenId
+        require(bytes(_tokenURI).length > 0, "Empty tokenURI");
+        _tokenIds.increment();
+        uint256 newItemId = _tokenIds.current();
+        _safeMint(msg.sender, newItemId);
+        _setTokenURI(newItemId, _tokenURI);
+        tokenURIToTokenId[_tokenURI] = newItemId;
+        emit TokenMinted(msg.sender, newItemId, _tokenURI);
+        return newItemId;
     }
 
     function _beforeTokenTransfer(address from, address to, uint256 tokenId) internal override(ERC721, ERC721Enumerable) {
