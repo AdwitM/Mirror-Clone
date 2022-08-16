@@ -8,8 +8,10 @@ import {ethers} from 'hardhat';
 async function main() {
   // Deploy MirrorClone smart contract
   // More information can be found here: https://hardhat.org/guides/deploying.html
-
-  console.log('MirrorClone deployed to:', '<CONTRACT ADDRESS>');
+  const MirrorClone = await ethers.getContractFactory('MirrorClone');
+  const mirrorClone = await MirrorClone.deploy('Mirror Clone', 'MRM');
+  await mirrorClone.deployed();
+  console.log('MirrorClone deployed to:', mirrorClone.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

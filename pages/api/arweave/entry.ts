@@ -11,22 +11,15 @@ export default async function (
   try {
     const {data, address} = req.body;
 
-    // Initialize wallet using ARWEAVE_WALLET environmental variable (Tip: Use JSON.parse)
-
-    // Create Arweave transaction passing in data. Documentation can be found here: https://github.com/ArweaveTeam/arweave-js
-
-    // Add tags:
-    // - App-Name - APP_NAME environmental variable
-    // - Content-Type - Should be application/json
-    // - Address - Address of a user
-    // Documentation can be found here: https://github.com/ArweaveTeam/arweave-js
-
-    // Sign Arweave transaction with your wallet. Documentation can be found here: https://github.com/ArweaveTeam/arweave-js
-
-    // Post Arweave transaction. Documentation can be found here: https://github.com/ArweaveTeam/arweave-js
-
-    // Return transaction id
-    res.status(200).json('<Transaction ID>');
+    // Initialize wallet using ARWEAVE_WALLET environmental variable (Tip: Use JSON.parse)\
+    const wallet = JSON.parse(process.env.ARWEAVE_WALLET as string);
+    const transaction = await arweave.createTransaction({data: data}, wallet);
+    transaction.addTag('App-Name', process.env.APP_NAME as string);
+    transaction.addTag('Content-Type', 'application/json');
+    transaction.addTag('Address', address);
+    await arweave.transactions.sign(transaction, wallet);
+    await arweave.transactions.post(transaction);
+    res.status(200).json(transaction.id);
   } catch (error) {
     console.log('ERROR', error);
     const errorMessage =
