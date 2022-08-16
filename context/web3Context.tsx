@@ -1,6 +1,6 @@
 import React, {createContext, useCallback, useState} from 'react';
 import {ethers} from 'ethers';
-import {MirrorClone, MirrorClone__factory} from '@/typechain';
+import {MirrorClone, MirrorClone__factory} from 'typechain';
 import {JsonRpcProvider} from '@ethersproject/providers';
 
 declare let window: {
