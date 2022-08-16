@@ -23,21 +23,21 @@ export default async function (
 ): Promise<any> {
   try {
     const {query} = _req.query;
-  
+
     const ardb = new ArDB(arweave);
-  
+
     const searchAddress = query && query[0];
-  
+
     const tags = [{name: 'App-Name', values: [process.env.APP_NAME as string]}];
     if (searchAddress) {
       tags.push({name: 'Address', values: [searchAddress]});
     }
-  
+
     const txs = await ardb.search('transactions').tags(tags).limit(10).find();
-  
+
     const promises = txs.map((tx: any) => getData(tx._id));
     const data = await Promise.all(promises);
-  
+
     res.status(200).json(data);
   } catch (error) {
     const errorMessage =

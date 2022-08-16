@@ -41,10 +41,7 @@ describe('MirrorClone', function () {
 
   describe('tokenURIToTokenId', () => {
     it('returns 0 if tokenURI does not exist', async () => {
-      expect(await contract.tokenURIToTokenId('ar://does-not-exist')).to.eq(
-        0,
-      );
+      expect(await contract.tokenURIToTokenId('ar://does-not-exist')).to.eq(0);
     });
   });
-  
 });

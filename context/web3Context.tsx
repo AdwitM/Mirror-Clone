@@ -42,11 +42,11 @@ export const Web3Provider = (props: NFTContractProviderProps) => {
       const signer = provider.getSigner();
       const currentAddress = await signer.getAddress();
       const chainId = await signer.getChainId();
-  
+
       if (chainId != (80001 as number)) {
-        alert('Please connect to the Polygon Mumbai testnet in MetaMask!')
+        alert('Please connect to the Polygon Mumbai testnet in MetaMask!');
       }
-  
+
       setAddress(currentAddress);
     } else {
       alert('Please install MetaMask at https://metamask.io');
