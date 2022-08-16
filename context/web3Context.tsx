@@ -1,6 +1,6 @@
 import React, {createContext, useCallback, useState} from 'react';
 import {ethers} from 'ethers';
-import {MirrorClone, MirrorClone__factory} from 'typechain';
+import {MirrorClone, MirrorClone__factory} from '@/typechain';
 import {JsonRpcProvider} from '@ethersproject/providers';
 
 declare let window: {
@@ -42,11 +42,11 @@ export const Web3Provider = (props: NFTContractProviderProps) => {
       const signer = provider.getSigner();
       const currentAddress = await signer.getAddress();
       const chainId = await signer.getChainId();
-
+  
       if (chainId != (80001 as number)) {
-        alert('Please connect to the Polygon Mumbai testnet in MetaMask!');
+        alert('Please connect to the Polygon Mumbai testnet in MetaMask!')
       }
-
+  
       setAddress(currentAddress);
     } else {
       alert('Please install MetaMask at https://metamask.io');
