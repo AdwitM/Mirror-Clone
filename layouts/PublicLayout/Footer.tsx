@@ -4,7 +4,7 @@ import React, {ReactElement} from 'react';
 const Footer = (): ReactElement => {
   return (
     <Box textAlign="center" paddingTop="5" paddingBottom="9">
-      <Text>Copyright © 2021 Figment Inc. All rights reserved.</Text>
+      <Text><a href="https://github.com/AdwitM/Mirror-Clone">Check the Source Code</a></Text>
     </Box>
   );
 };
