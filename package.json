@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "yarn web3:compile",
     "build": "next build",
     "start": "next start",
     "test": "jest",
